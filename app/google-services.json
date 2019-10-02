@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "68045020954",
+    "firebase_url": "https://my-chat-a6349.firebaseio.com",
+    "project_id": "my-chat-a6349",
+    "storage_bucket": "my-chat-a6349.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:68045020954:android:e3d26d5dc8589618da16a3",
+        "android_client_info": {
+          "package_name": "uz.mahmudxon.mychat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "68045020954-k5068tmo5quptgp38umo0q0vhtl0u7gm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.mahmudxon.mychat",
+            "certificate_hash": "7f37133c4bd1cf2616dabb778d615410c92b07fa"
+          }
+        },
+        {
+          "client_id": "68045020954-d9k9adpp2lrj5q01kq8mbs29r1i0lffo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.mahmudxon.mychat",
+            "certificate_hash": "321735c38f38d672f1ba5f45d41999b00a5adaec"
+          }
+        },
+        {
+          "client_id": "68045020954-5sla36gvaqpui464pe8pa9m5n93s5kke.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGE5EEUQSD-dK9UAFmL34OKn_ddAJj91o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "68045020954-5sla36gvaqpui464pe8pa9m5n93s5kke.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

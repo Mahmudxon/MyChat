@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Chat</string>
+    <string name="description_sign_up">Select your country and enter your number</string>
+    <string name="description_verfy">We\'ve sent code to your device, please enter your code. Your number: </string>
+</resources>
