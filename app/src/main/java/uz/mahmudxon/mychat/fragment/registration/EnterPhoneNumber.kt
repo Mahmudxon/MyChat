@@ -1,4 +1,4 @@
-package uz.mahmudxon.mychat.fragment
+package uz.mahmudxon.mychat.fragment.registration
 
 import android.content.Context
 import android.view.WindowManager
@@ -12,6 +12,9 @@ import uz.mahmudxon.mychat.extentions.toast
 class EnterPhoneNumber : BaseFragment(R.layout.fragment_enter_phone_number) {
 
     var isVailed = false
+
+    var listener: ((String)->Unit)? = null
+
     override fun onCreatedView(senderData: Any?) {
 
         cpp.registerCarrierNumberEditText(number)
@@ -39,8 +42,8 @@ class EnterPhoneNumber : BaseFragment(R.layout.fragment_enter_phone_number) {
             }
 
 
-            addFragment(VeficationFragment(), cpp.fullNumberWithPlus)
 
+            listener?.invoke(cpp.fullNumberWithPlus)
         }
     }
 

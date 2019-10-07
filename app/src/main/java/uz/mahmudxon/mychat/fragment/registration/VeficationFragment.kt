@@ -1,27 +1,27 @@
-package uz.mahmudxon.mychat.fragment
+package uz.mahmudxon.mychat.fragment.registration
 
-import android.util.Log
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.PhoneAuthProvider.OnVerificationStateChangedCallbacks
-import com.google.firebase.database.*
 import com.r0adkll.slidr.Slidr
 import com.r0adkll.slidr.model.SlidrConfig
 import com.r0adkll.slidr.model.SlidrInterface
 import com.r0adkll.slidr.model.SlidrPosition
 import kotlinx.android.synthetic.main.fragment_verification.*
-import uz.mahmudxon.mychat.MainActivity
 import uz.mahmudxon.mychat.R
+import uz.mahmudxon.mychat.dialog.ProgressDialog
 import uz.mahmudxon.mychat.extentions.BaseFragment
 import uz.mahmudxon.mychat.extentions.toast
-import uz.mahmudxon.mychat.model.User
 import java.util.concurrent.TimeUnit
 
 class VeficationFragment : BaseFragment(R.layout.fragment_verification) {
     var slidrInterface : SlidrInterface ?= null
     lateinit var auth : FirebaseAuth
     lateinit var storedVerificationId : String
-    private lateinit var database: DatabaseReference
+    var listener: ((String)->Unit)? = null
+    lateinit var dialog: ProgressDialog
+
+
 
     val callbacks = object : OnVerificationStateChangedCallbacks()
     {
@@ -33,7 +33,7 @@ class VeficationFragment : BaseFragment(R.layout.fragment_verification) {
             // 2 - Auto-retrieval. On some devices Google Play services can automatically
             //     detect the incoming verification SMS and perform verification without
 
-//           signInWithPhoneAuthCredential(p0)
+        signInWithPhoneAuthCredential(p0)
 
         }
 
@@ -89,6 +89,10 @@ class VeficationFragment : BaseFragment(R.layout.fragment_verification) {
 
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
+
+        dialog = ProgressDialog(requireContext(), "Please wait...")
+        dialog.show()
+
         auth.signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
@@ -100,25 +104,20 @@ class VeficationFragment : BaseFragment(R.layout.fragment_verification) {
 
                     user?.let { done(it) }
 
-
+                    dialog.dismiss()
                     // ...
                 } else {
                     // Sign in failed, display a message and update the UI
-
+                    dialog.dismiss()
                     if (task.exception is FirebaseAuthInvalidCredentialsException) {
                         // The verification code entered was invalid
-
+                        toast("Incorrect password!!!")
                     }
                 }
             }
     }
 
     private fun done(user: FirebaseUser) {
-        if(User.isExist(user.uid))
-            addFragment(RegisterFragment(), user.uid)
-        else
-        {
-            (activity as MainActivity).succesRegistration()
-        }
+        listener?.invoke(user.uid)
     }
 }

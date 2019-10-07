@@ -25,6 +25,7 @@ import androidx.fragment.app.FragmentManager
 import java.io.IOException
 import java.io.InputStream
 import uz.mahmudxon.mychat.R
+import uz.mahmudxon.mychat.fragment.MainFragment
 
 
 @SuppressLint("ShowToast")
@@ -89,6 +90,12 @@ fun AppCompatActivity.startFragment(fragment: BaseFragment, senderData: Any? = n
         .setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit)
         .replace(R.id.content, fragment).commit()
 }
+
+fun AppCompatActivity.removeFragment (fm : Fragment)
+{
+    supportFragmentManager.beginTransaction().remove(fm).commit()
+}
+
 fun AppCompatActivity.addFragment(fragment: BaseFragment, senderData: Any? = null) {
     val resId = ViewModelProviders.of(this)[BaseFragmentViewModel::class.java].resId
     fragment.senderData = senderData
